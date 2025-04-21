@@ -1,0 +1,26 @@
+# === Eclipse IDE files ===
+.classpath
+.project
+.settings/
+
+# === IntelliJ IDEA files (optional) ===
+.idea/
+*.iml
+
+# === Maven build output ===
+target/
+
+# === Test reports & results ===
+test-output/
+allure-results/
+
+# === Java binary files ===
+**/*.class
+
+# === Logs ===
+*.log
+
+# === OS files ===
+.DS_Store
+Thumbs.db
+
