@@ -1,12 +1,7 @@
-package mobileautomationframework.Appium;
+package mobileautomationframework.appiumBase;
 
-import org.openqa.selenium.JavascriptExecutor;
 import org.testng.annotations.Test;
-
-import com.google.common.collect.ImmutableMap;
-
 import java.net.MalformedURLException;
-
 import io.appium.java_client.AppiumBy;
 
 /**

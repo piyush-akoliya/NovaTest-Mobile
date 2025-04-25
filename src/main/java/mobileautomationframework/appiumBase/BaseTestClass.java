@@ -1,13 +1,15 @@
-package mobileautomationframework.Appium;
+package mobileautomationframework.appiumBase;
 
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebElement;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
@@ -36,7 +38,7 @@ public class BaseTestClass {
 		// to run our automation scripts on
 		UiAutomator2Options options = new UiAutomator2Options();
 		options.setDeviceName("PiyushEmulator");
-		options.setApp("/Users/piyushakoliya/testing-frameworks/Appium/src/test/java/resources/ApiDemos-debug.apk");
+		options.setApp("/Users/piyushakoliya/testing-frameworks/Appium/src/main/java/resources/ApiDemos-debug.apk");
 
 		// Below AndroidDriver expects a Appium Server URL
 		driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), options);
@@ -58,6 +60,23 @@ public class BaseTestClass {
 
 		}
 		;
+	}
+
+	public void swipeElement(WebElement element, String direction, float percentage) {
+
+		// Java
+		((JavascriptExecutor) driver).executeScript("mobile: swipeGesture", ImmutableMap.of("elementId",
+				((RemoteWebElement) element).getId(), "direction", direction, "percent", percentage));
+
+	}
+
+	public void dragAndDrop(WebElement element, int xcordinate, int ycordinate) {
+		// Java
+		((JavascriptExecutor) driver).executeScript("mobile: dragGesture", ImmutableMap.of("elementId",
+				((RemoteWebElement) element).getId(), "endX", xcordinate, "endY", ycordinate));
+
+		Assert.assertEquals(driver.findElement(By.id("io.appium.android.apis:id/drag_result_text")).getText(),
+				"Dropped!");
 	}
 
 	@AfterClass
