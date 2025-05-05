@@ -1,4 +1,4 @@
-package mobileautomationframework.appiumBase;
+package mobileautomationframework.base;
 
 import org.testng.annotations.Test;
 import java.net.MalformedURLException;

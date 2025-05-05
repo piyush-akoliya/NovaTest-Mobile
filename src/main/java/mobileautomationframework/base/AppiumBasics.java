@@ -1,4 +1,4 @@
-package mobileautomationframework.appiumBase;
+package mobileautomationframework.base;
 
 import org.openqa.selenium.By;
 import org.testng.Assert;

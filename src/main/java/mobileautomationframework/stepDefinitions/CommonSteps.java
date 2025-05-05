@@ -3,25 +3,16 @@ package mobileautomationframework.stepDefinitions;
 import java.net.MalformedURLException;
 
 import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import mobileautomationframework.appiumBase.BaseTestClass;
+import mobileautomationframework.base.BaseTestClass;
+import mobileautomationframework.pages.HomePage;
+import org.openqa.selenium.By;
+import org.testng.Assert;
 
 public class CommonSteps extends BaseTestClass {
 
     @Given("I start the appium app")
     public void i_open_the_app() throws MalformedURLException {
         configureAppium();
+        Assert.assertTrue(isElementDisplayed(By.xpath(HomePage.API_DEMOS_TITLE)));
     }
-
-    @Then("I select the Views option")
-    public void i_select_the_views_option() {
-
-    }
-
-    @Then("I select the App option")
-    public void i_select_the_app_option() throws InterruptedException {
-
-
-    }
-
 }
