@@ -32,25 +32,29 @@ public class BaseTestClass {
     public WebDriverWait wait;
     public AppiumDriverLocalService appiumBuilderService;
 
-    @BeforeClass
-    public void configureAppium() throws MalformedURLException {
+    public BaseTestClass() {
         // Start Appium Server
         appiumBuilderService = new AppiumServiceBuilder()
-                .usingDriverExecutable(new File("/opt/homebrew/bin/node"))
-                .withAppiumJS(new File("/opt/homebrew/lib/node_modules/appium/build/lib/main.js"))
-                .withIPAddress("127.0.0.1")
-                .usingPort(4723)
-                .build();
+                .withAppiumJS(new File("C:\\Users\\piyush.akoliya\\AppData\\Roaming\\npm\\node_modules\\appium\\build\\lib\\main.js"))
+                .withIPAddress("127.0.0.1").usingPort(4723).build();
+
         appiumBuilderService.start();
 
         // Setup Android Capabilities
         UiAutomator2Options options = new UiAutomator2Options();
-        options.setDeviceName("PiyushEmulator");
-        options.setApp("/Users/piyushakoliya/testing-frameworks/Appium/src/main/java/resources/ApiDemos-debug.apk");
+        options.setDeviceName("AndroidEmulator");
+
+        options.setPlatformName("Android");
+//        options.setCapability("browserName", "Chrome");
+        options.setApp("C:\\POC\\Project\\NovaTest-Mobile\\src\\main\\java\\resources\\ApiDemos-debug.apk");
 
         // Initialize AndroidDriver
-        driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        try {
+            driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), options);
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        }
 
         // Initialize PageFactory & Wait
         PageFactory.initElements(new AppiumFieldDecorator(driver, Duration.ofSeconds(15)), this);

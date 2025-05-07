@@ -12,7 +12,6 @@ public class CommonSteps extends BaseTestClass {
 
     @Given("I start the appium app")
     public void i_open_the_app() throws MalformedURLException {
-        configureAppium();
         Assert.assertTrue(isElementDisplayed(By.xpath(HomePage.API_DEMOS_TITLE)));
     }
 }
